@@ -1,1 +1,46 @@
 @import "tailwindcss";
+
+@font-face {
+    font-family: 'oswaldregular';
+    src: url('/fonts/oswald/oswald-variablefont_wght-webfont.woff2') format('woff2'),
+         url('/fonts/oswald/oswald-variablefont_wght-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('/fonts/orbitron/orbitron-variablefont_wght-webfont.woff2') format('woff2'),
+         url('/fonts/orbitron/orbitron-variablefont_wght-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@theme {
+  --color-background: #0F172A;
+  --color-custom-green: #10B981;
+  --color-custom-gray-light: #C6C6CD;
+  --color-custom-green-light: #4EDEA3;
+  --color-section-background: #171F33;
+  --color-stack-background: #060E20;
+  --color-section-background: #131B2E;
+  
+  --font-family-primary: 'oswaldregular', sans-serif;
+  --font-family-secondary: 'Orbitron', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-custom-green) transparent;
+}
+
+body {
+  color: #DAE2FD;
+}
+
+.gradient__text {
+  background: linear-gradient(180deg, #10B981, #89CEFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
