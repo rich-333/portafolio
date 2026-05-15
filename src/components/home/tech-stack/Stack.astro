@@ -1,0 +1,27 @@
+---
+import { stack } from "../../../data/home/stack/stack"
+import type { Stack } from "../../../data/home/stack/stack"
+---
+
+<section id="technologies" class="min-h-screen max-w-8xl mx-auto py-32 px-12 grid grid-cols-1 gap-16 scroll-mt-12">
+  <div class=" flex flex-col gap-4 items-center">
+    <h2 class="font-family-secondary text-4xl font-bold">TECNOLOGÍAS</h2>
+    <div class="w-24 h-1 bg-custom-green"></div>
+  </div>
+
+  <div class=" grid grid-cols-6 w-6xl gap-6 mx-auto ">
+    {
+      stack.map(({ name, icon }: Stack) => (
+        <div class="flex flex-col items-center justify-center gap-4 bg-section-background p-6 rounded-lg">
+          <iconify-icon
+            icon={icon} 
+            width="32" 
+            height="32"
+            class="aspect-square object-contain"
+          ></iconify-icon>
+          <p class="text-sm text-custom-gray-light font-bold">{name}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
