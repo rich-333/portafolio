@@ -1,0 +1,61 @@
+---
+import { aboutMe } from "../../../data/home/about-me/aboutMe"
+import type { AboutMe } from "../../../data/home/about-me/aboutMe"
+---
+
+<section id="about" class="min-h-screen bg-[#0B1326] scroll-mt-12">
+  <div class="grid grid-cols-[468px_1fr] gap-20 max-w-8xl mx-auto px-10 py-32">
+    <div class=" flex flex-col gap-8">
+      <h2 class="font-family-secondary text-4xl font-bold">SOBRE_MÍ</h2>
+      <div class=" bg-custom-green-light h-1 w-20"></div>
+      <div class=" flex flex-col gap-4 text-custom-gray-light text-sm font-normal">
+        <p>[01] // LOCALIZACION: COCHABAMBA_BO</p>
+        <p>[02] // ESTADO: DISPONIBLE_PARA_CONTRATAR</p>
+        <p>[03] // ROL: FULL_STACK_DEVELOPER</p>
+      </div>
+    </div>
+
+    <div class=" flex flex-col gap-12 w-full">
+      <div>
+        <article class="bg-section-background p-10 flex flex-col gap-8 rounded-lg">
+          <h3 class=" text-2xl font-normal">
+              Soy un desarrollador junior con enfoque full stack.
+              Me gusta construir productos con una <span class="text-custom-green">base sólida</span>
+              y una interfaz clara.
+          </h3>
+          <div class=" flex justify-between gap-8 text-custom-gray-light">
+              <p>
+                Trabajo con Laravel, React y Astro,
+                usando Tailwind y SCSS para mantener
+                estilos limpios. En el backend disfruto
+                modelar datos y optimizar consultas SQL.
+              </p>
+              <p>
+                En el frontend busco experiencias
+                simples y rápidas. Conozco PostgreSQL,
+                MySQL, Linux, CSS y JavaScript vanilla,
+                y manejo Git a nivel básico.
+              </p>
+          </div>
+        </article>
+      </div>
+
+      <div class=" flex gap-4">
+        {
+          aboutMe.map(({ title, description, icon }: AboutMe) => (
+            <article class="bg-section-background p-6 flex flex-col items-start gap-4 rounded-lg">
+              <iconify-icon
+                icon={icon} 
+                width="24" 
+                height="24"
+                class="text-custom-green"
+              ></iconify-icon>
+              <h4 class="font-family-secondary tracking-widest text-sm font-bold">{title}</h4>
+              <p class=" text-custom-gray-light">{description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
