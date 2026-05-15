@@ -1,0 +1,27 @@
+---
+import type { FooterData } from "../../data/ui/footer"
+import { footerData } from "../../data/ui/footer"
+---
+
+<footer class=" bg-stack-background p-12 flex justify-between">
+  <div>
+    <small class="text-xs font-normal text-custom-green-light/50">&copy; 2026_MI_PORTAFOLIO // FULL_STACK_DEVELOPER</small>
+  </div>
+
+  <div>
+    <nav>
+      <ul class="flex items-center gap-8">
+        {
+          footerData.map((item: FooterData) => (
+            <li class="text-sm font-normal text-[#45464D] hover:text-custom-green-light transition-colors duration-300">
+              <a href={item.href} target="_blank" rel="noopener noreferrer">{item.name}</a>
+            </li>
+          ))
+        }
+        <span class="font-normal text-custom-green-light">
+          TERMINAL_ACCESS
+        </span>
+      </ul>
+    </nav>  
+  </div>
+</footer>
