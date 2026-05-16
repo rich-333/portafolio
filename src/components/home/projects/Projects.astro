@@ -2,6 +2,7 @@
 import { projects } from "../../../data/home/projects/projects"
 import type { Project } from "../../../data/home/projects/projects"
 import Image from "astro/components/Image.astro"
+import ProjectModal from "../../ui/modal/ProjectModal.astro"
 ---
 
 <section id="projects" class=" max-w-8xl mx-auto px-10 py-32 bg-section-background scroll-mt-12">
@@ -22,12 +23,17 @@ import Image from "astro/components/Image.astro"
           }
         >
           <div class={ project.id === 3 || project.id === 4 ? "flex flex-col-reverse p-8" : "" }>
-            <Image
-              src={project.image}
-              alt={project.title}
-              class={ " " +  (project.id === 3 || project.id === 4 ? "max-w-full max-h-80 mt-4 rounded" : "w-full object-cover mb-4") }
-              loading="lazy" 
-            />
+            <button 
+              data-project-id={project.id}
+              data-gallery={JSON.stringify(project.gallery.map(image => image.src))}
+              class="openModalBtns w-full h-full cursor-pointer">
+              <Image
+                src={project.image}
+                alt={project.title}
+                class={ " " +  (project.id === 3 || project.id === 4 ? "max-w-full max-h-80 mt-4 rounded" : "w-full object-cover mb-4") }
+                loading="lazy" 
+              />
+            </button>
             <div class={ "flex flex-col gap-4 " + (project.id === 3 || project.id === 4 ? "p-0" : "p-8") }>
               <div>
                 {
@@ -51,3 +57,5 @@ import Image from "astro/components/Image.astro"
     }
   </div>
 </section>
+
+<ProjectModal />

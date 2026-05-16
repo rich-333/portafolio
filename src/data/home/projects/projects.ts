@@ -10,7 +10,8 @@ export interface Project {
   image: ImageMetadata;
   stack: string[];
   linkRepo: string;
-  linkDeploy: string;
+  linkDeploy?: string;
+  gallery: ImageMetadata[];
 }
 
 export const projects: Project[] = [
@@ -21,7 +22,12 @@ export const projects: Project[] = [
     image: project1,
     stack: ["React", "Node.js", "MongoDB"],
     linkRepo: "https://github.com/user/repo1",
-    linkDeploy: "https://user.github.io/repo1"
+    linkDeploy: "https://user.github.io/repo1",
+    gallery: [
+      project2,
+      project4,
+      project3
+    ]
   },
   {
     id: 2,
@@ -30,7 +36,11 @@ export const projects: Project[] = [
     image: project2,
     stack: ["Vue", "Firebase"],
     linkRepo: "https://github.com/user/repo2",
-    linkDeploy: "https://user.github.io/repo2"
+    linkDeploy: "https://user.github.io/repo2",
+    gallery: [
+      project1,
+      project3
+    ]
   },
   {
     id: 3,
@@ -39,7 +49,11 @@ export const projects: Project[] = [
     image: project3,
     stack: ["Angular", "Express", "MySQL"],
     linkRepo: "https://github.com/user/repo3",
-    linkDeploy: "https://user.github.io/repo3"
+    linkDeploy: "https://user.github.io/repo3",
+    gallery: [
+      project1,
+      project2
+    ]
   },
   {
     id: 4,
@@ -48,6 +62,10 @@ export const projects: Project[] = [
     image: project4,
     stack: ["Svelte", "Django"],
     linkRepo: "https://github.com/user/repo4",
-    linkDeploy: "https://user.github.io/repo4"
+    linkDeploy: "https://user.github.io/repo4",
+    gallery: [
+      project2,
+      project3
+    ]
   }
 ]

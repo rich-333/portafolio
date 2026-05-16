@@ -44,3 +44,8 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.btnDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,70 @@
+---
+import demoImage from "../../../assets/images/project1.jpg";
+---
+
+<style>
+  dialog {
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    padding: 0;
+    max-width: 900px;
+    max-height: 90vh;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: auto;
+  }
+
+  dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+  }
+</style>
+
+<dialog id="myDialog" class="select-none">
+  <div class="relative w-full h-[90vh] ">
+    <button 
+      id="closeModalBtn"
+      class="absolute top-5 right-5 z-10 bg-background rounded-full p-2 text-custom-green-light
+        flex items-center justify-center cursor-pointer
+        hover:bg-custom-green-light hover:text-background transition-colors duration-300"
+    >
+      <iconify-icon
+        icon="memory:close-outline"
+        width="30" 
+        height="28"
+      ></iconify-icon>
+    </button>
+    <img
+      class="object-contain w-full h-full pointer-events-none"
+      id="modalImage" 
+      src={demoImage.src} 
+      alt=""
+    >
+    <button
+      id="prevBtn"
+      class="absolute top-1/2 left-5 z-10 transform -translate-y-1/2 bg-background rounded-full p-1 text-custom-green-light
+        flex items-center justify-center cursor-pointer
+        hover:bg-custom-green-light hover:text-background transition-colors duration-300"
+    >
+      <iconify-icon
+        icon="ic:round-navigate-before"
+        width="32"
+        height="32"
+      ></iconify-icon>
+    </button>
+    <button
+      id="nextBtn"
+      class="absolute top-1/2 right-5 z-10 transform -translate-y-1/2 bg-background rounded-full p-1 text-custom-green-light
+        flex items-center justify-center cursor-pointer
+        hover:bg-custom-green-light hover:text-background transition-colors duration-300"
+    >
+      <iconify-icon
+        icon="ic:round-navigate-next"
+        width="32"
+        height="32"
+      ></iconify-icon>
+    </button>
+  </div>
+</dialog>
+
+<script src="../../../scripts/projectModal.ts" ></script>
