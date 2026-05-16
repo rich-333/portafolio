@@ -7,17 +7,17 @@ export interface AboutMe {
 export const aboutMe: AboutMe[] = [
   {
     icon: 'icon-park-solid:data',
-    title: 'Datos SQL',
-    description: 'Consultas y modelado intermedio en MySQL y PostgreSQL.'
+    title: 'Arquitectura SQL',
+    description: 'Diseño de esquemas relacionales y optimización de consultas en MySQL y PostgreSQL.'
   },
   {
     icon: 'mdi:console',
-    title: 'Linux y Git',
-    description: 'Uso diario de terminal y control de versiones en proyectos personales.'
+    title: 'Entorno Linux y Git',
+    description: 'Manejo ágil de la terminal y control de versiones para un flujo de desarrollo organizado.'
   },
   {
     icon: 'material-symbols:developer-mode-tv-outline',
-    title: 'Full Stack',
-    description: 'Laravel, React, Astro, Tailwind, SCSS, CSS y JavaScript vanilla.'
+    title: 'Desarrollo End-to-End',
+    description: 'Conexión de lógicas complejas en Laravel con interfaces modernas y rápidas en React o Astro.'
   }
 ]
