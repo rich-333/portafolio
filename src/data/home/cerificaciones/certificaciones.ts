@@ -21,7 +21,7 @@ export const certificaciones: Certificacion[] = [
     issued: "Junio 2024",
     name: "Programacion Orientada a Objetos",
     organization: "Universidad Privada Domingo Savio",
-    url: "/certificates/Programacion_Orientada_Objetos.pdf",
+    url: "/certificates/certificado-upds-programacion.pdf",
     img: certificadoProgramacion,
     leftBorderColor: "border-l-[#4CAF50] hover:shadow-lg hover:shadow-[#4CAF50]/50 transition-shadow duration-300",
     issuedColor: "text-[#4CAF50]"
