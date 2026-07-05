@@ -6,10 +6,10 @@ export interface FooterData {
 export const footerData: FooterData[] = [
   {
     name: "GITHUB",
-    href: "https://github.com"
+    href: "https://github.com/rich-333"
   },
   {
     name: "LINKEDIN",
-    href: "https://linkedin.com"
+    href: "https://www.linkedin.com/in/richard-padilla-alvarez-7ba493374/"
   }
 ];
