@@ -1,56 +1,109 @@
 ---
 import { navLinks } from "../../data/ui/header"
-import type { Navlinks } from "../../data/ui/header"
 
 const currentPath = Astro.url.pathname
 ---
 
-<header class="bg-background shadow-xl shadow-custom-green/10 top-0 sticky py-7 z-50 max-w-8xl mx-auto px-10 flex items-center justify-between">
-  <a
-    href="/" 
-    class="font-bold font-family-secondary text-lg tracking-wider text-custom-green-light">
-    FULLSTACK_DEV
-  </a>
-  <nav class=" flex items-center justify-center">
-    <ul class=" flex gap-6">
+<header class="top-0 z-50 sticky bg-background/95 shadow-xl shadow-custom-green/10 backdrop-blur-sm">
+  <div class="mx-auto flex max-w-8xl items-center justify-between px-4 py-4 sm:px-6 lg:px-10">
+    <a
+      href="/"
+      class="font-bold font-family-secondary text-lg tracking-wider text-custom-green-light"
+    >
+      FULLSTACK_DEV
+    </a>
+
+    <nav class="hidden items-center md:flex">
+      <ul class="flex gap-6">
+        {
+          navLinks.map(({ name, href }) => {
+            const isActive = href === currentPath
+            return (
+              <li>
+                <a
+                  data-nav-link
+                  class:list={[
+                    "group relative cursor-pointer transition-colors duration-300",
+                    isActive ? "text-custom-green" : "hover:text-custom-green",
+                  ]}
+                  href={href}
+                >
+                  {name}
+                  <span
+                    data-nav-underline
+                    class:list={[
+                      "absolute -bottom-1 left-0 h-0.5 bg-custom-green transition-all duration-300",
+                      isActive ? "w-full" : "w-0 group-hover:w-full",
+                    ]}
+                  ></span>
+                </a>
+              </li>
+            )
+          })
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href="/cv.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden rounded-full border border-custom-green/30 bg-[#222A3D] px-5 py-2 text-sm font-medium text-custom-green-light transition-all duration-300 hover:bg-[#222A3D]/50 hover:ring-2 hover:ring-custom-green-light sm:inline-flex"
+      >
+        VER CV
+      </a>
+
+      <button
+        type="button"
+        data-menu-button
+        class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-custom-green/30 text-custom-green-light transition-all duration-300 hover:border-custom-green hover:bg-custom-green/10 hover:text-custom-green md:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <iconify-icon data-menu-icon icon="lucide:menu" class="text-xl"></iconify-icon>
+        <iconify-icon data-menu-close-icon icon="lucide:x" class="hidden text-xl"></iconify-icon>
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    data-mobile-menu
+    class="max-h-0 overflow-hidden border-t border-custom-green/10 bg-background/95 px-4 py-0 opacity-0 transition-all duration-300 ease-out md:hidden"
+  >
+    <ul class="flex flex-col gap-3 py-2">
       {
         navLinks.map(({ name, href }) => {
           const isActive = href === currentPath
           return (
-          <li>
-            <a
-              data-nav-link
-              class:list={[
-                "transition-colors duration-300 cursor-pointer relative group",
-                isActive ? "text-custom-green" : "hover:text-custom-green",
-              ]}
-              href={href}
-            >
-              {name}
-              <span
-                data-nav-underline
+            <li>
+              <a
+                data-nav-link
                 class:list={[
-                  "absolute -bottom-1 left-0 h-0.5 bg-custom-green transition-all duration-300",
-                  isActive ? "w-full" : "w-0 group-hover:w-full",
+                  "flex items-center justify-between rounded-xl px-3 py-2 text-sm transition-all duration-300",
+                  isActive ? "bg-custom-green/10 text-custom-green" : "text-custom-green-light hover:bg-custom-green/10 hover:text-custom-green",
                 ]}
-              ></span>
-            </a>
-          </li>
+                href={href}
+              >
+                <span>{name}</span>
+                <span class="text-xs opacity-70">↗</span>
+              </a>
+            </li>
           )
         })
       }
     </ul>
-  </nav>
-  <a
-    href="/cv.pdf" 
-    target="_blank" 
-    rel="noopener noreferrer"
-    class="bg-[#222A3D] text-custom-green-light font-medium text-sm py-2 px-5 
-      hover:ring-2 hover:ring-custom-green-light transition-all duration-300
-      hover:bg-[#222A3D]/50" 
-  >
-    CV.PDF
-  </a>
+
+    <a
+      href="/cv.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mb-4 flex items-center justify-center rounded-full border border-custom-green/30 bg-[#222A3D] px-4 py-2 text-sm font-medium text-custom-green-light transition-all duration-300 hover:bg-[#222A3D]/50"
+    >
+      VER CV
+    </a>
+  </div>
 </header>
 
 <script>
@@ -74,7 +127,12 @@ const currentPath = Astro.url.pathname
     })
     .filter((entry): entry is { link: HTMLAnchorElement; section: HTMLElement; href: string } => entry !== null)
 
-  const setActiveLink = (activeHref:string) => {
+  const menuButton = document.querySelector<HTMLButtonElement>("[data-menu-button]")
+  const mobileMenu = document.querySelector<HTMLElement>("[data-mobile-menu]")
+  const menuIcon = document.querySelector<HTMLElement>("[data-menu-icon]")
+  const closeIcon = document.querySelector<HTMLElement>("[data-menu-close-icon]")
+
+  const setActiveLink = (activeHref: string) => {
     links.forEach((link) => {
       const underline = link.querySelector("[data-nav-underline]")
       const href = link.getAttribute("href") || ""
@@ -100,6 +158,34 @@ const currentPath = Astro.url.pathname
     })
   }
 
+  const toggleMobileMenu = (force?: boolean) => {
+    if (!mobileMenu || !menuButton || !menuIcon || !closeIcon) return
+
+    const shouldOpen = typeof force === "boolean" ? force : menuButton.getAttribute("aria-expanded") !== "true"
+
+    mobileMenu.classList.toggle("max-h-0", !shouldOpen)
+    mobileMenu.classList.toggle("opacity-0", !shouldOpen)
+    mobileMenu.classList.toggle("max-h-[999px]", shouldOpen)
+    mobileMenu.classList.toggle("opacity-100", shouldOpen)
+    mobileMenu.classList.toggle("py-0", !shouldOpen)
+    mobileMenu.classList.toggle("py-3", shouldOpen)
+
+    menuButton.setAttribute("aria-expanded", String(shouldOpen))
+    menuIcon.classList.toggle("hidden", shouldOpen)
+    closeIcon.classList.toggle("hidden", !shouldOpen)
+  }
+
+  const closeMobileMenu = () => toggleMobileMenu(false)
+
+  menuButton?.addEventListener("click", () => toggleMobileMenu())
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth < 768) {
+        closeMobileMenu()
+      }
+    })
+  })
+
   const activateFromHash = () => {
     if (window.location.hash) {
       setActiveLink(window.location.hash)
@@ -116,31 +202,36 @@ const currentPath = Astro.url.pathname
     activateFromHash()
   })
 
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) {
+      closeMobileMenu()
+    }
+  })
+
   if (sectionEntries.length > 0) {
-    const visibleSections = new Map();
-    
+    const visibleSections = new Map<string, HTMLElement>()
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            visibleSections.set(entry.target.id, entry.target);
+            visibleSections.set(entry.target.id, entry.target as HTMLElement)
           } else {
-            visibleSections.delete(entry.target.id);
+            visibleSections.delete(entry.target.id)
           }
-        });
+        })
 
         const visible = Array.from(visibleSections.values()).sort((a, b) => {
-          const rectA = a.getBoundingClientRect();
-          const rectB = b.getBoundingClientRect();
-          // Ordenar por el elemento más alto (el primer elemento en la pantalla de arriba a abajo)
-          return rectA.top - rectB.top;
-        });
+          const rectA = a.getBoundingClientRect()
+          const rectB = b.getBoundingClientRect()
+          return rectA.top - rectB.top
+        })
 
         if (visible.length > 0) {
-          const activeSection = visible[0];
-          setActiveLink(`#${activeSection.id}`);
+          const activeSection = visible[0]
+          setActiveLink(`#${activeSection.id}`)
         } else if (window.scrollY < 100 && homeLink) {
-          setActiveLink("/");
+          setActiveLink("/")
         }
       },
       {
@@ -150,8 +241,7 @@ const currentPath = Astro.url.pathname
     )
 
     sectionEntries.forEach(({ section }) => observer.observe(section))
-    
-    // Also track scroll for when we are at the very top
+
     window.addEventListener("scroll", () => {
       if (window.scrollY < 100 && homeLink) {
         setActiveLink("/")

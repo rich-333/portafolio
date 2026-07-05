@@ -24,8 +24,9 @@ export const navLinks: Navlinks[] = [
     name: 'Certificados',
     href: '#certificates',
   },
+  /*
   {
     name: 'Contacto',
     href: '#contact',
-  }
+  }*/
 ]
