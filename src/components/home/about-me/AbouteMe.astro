@@ -18,17 +18,17 @@ import type { AboutMe } from "../../../data/home/about-me/aboutMe"
     <div class=" flex flex-col gap-12 w-full">
       <div>
         <article class="bg-section-background p-10 flex flex-col gap-8 rounded-lg">
-          <h3 class=" text-2xl font-normal">
-              Soy un desarrollador junior con enfoque full stack.
-              Me gusta construir productos con una <span class="text-custom-green">base sólida</span>
-              y una interfaz clara.
+          <h3 class=" text-2xl font-normal leading-relaxed">
+              Soy desarrollador Full Stack junior y estudiante de Ingeniería de Sistemas.
+              Me gusta construir aplicaciones  con una <span class="text-custom-green">base sólida</span>
+              y una <span class="text-custom-green">interfaz clara</span>.
           </h3>
           <div class=" flex justify-between gap-8 text-custom-gray-light">
-              <p>
-                Mi trabajo en el backend se centra en estructurar información de manera eficiente. Utilizo Laravel junto a PostgreSQL o MySQL para diseñar bases de datos bien normalizadas y APIs robustas, asegurando que la lógica de negocio sea escalable y veloz.
+              <p class="leading-relaxed">
+                En el backend disfruto diseñar bases de datos, implementar la lógica de negocio y desarrollar APIs que permitan construir aplicaciones organizadas y fáciles de mantener. Trabajo principalmente con Laravel, PostgreSQL y MySQL.
               </p>
-              <p>
-                Esa robustez la traduzco al navegador creando interfaces ágiles con React y Astro, estilizadas con Tailwind y SCSS. Acostumbro moverme en entornos Linux y mantener un control de versiones ordenado con Git, priorizando siempre un código limpio.
+              <p class="leading-relaxed">
+                En el frontend busco crear interfaces rápidas, claras y responsivas utilizando React y Astro. También trabajo con Tailwind CSS y SCSS, manteniendo un código ordenado y un flujo de trabajo apoyado en Git y Linux.
               </p>
           </div>
         </article>
@@ -45,7 +45,7 @@ import type { AboutMe } from "../../../data/home/about-me/aboutMe"
                 class="text-custom-green"
               ></iconify-icon>
               <h4 class="font-family-secondary tracking-widest text-sm font-bold">{title}</h4>
-              <p class=" text-custom-gray-light">{description}</p>
+              <p class=" text-custom-gray-light leading-relaxed">{description}</p>
             </article>
           ))
         }
