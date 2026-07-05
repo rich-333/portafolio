@@ -5,21 +5,21 @@ import Image from "astro/components/Image.astro"
 import ProjectModal from "../../ui/modal/ProjectModal.astro"
 ---
 
-<section id="projects" class=" max-w-8xl mx-auto px-10 py-32 bg-section-background scroll-mt-12">
+<section id="projects" class=" max-w-8xl mx-auto px-10 py-32 bg-section-background scroll-mt-90 md:scroll-mt-12">
   <div class=" mb-16">
     <h2 class="font-family-secondary text-4xl font-bold">PROYECTOS</h2>
   </div>
-  <div class="grid grid-cols-6 gap-6">
+  <div class="grid grid-cols-1 lg:grid-cols-6 gap-6">
     {
       projects.map((project: Project) => (
         <article
           class={
             "bg-[#2D3449] rounded-lg overflow-hidden " +
             (project.id === 1
-              ? "col-span-4"
+              ? "lg:col-span-4"
               : project.id === 2
-                ? "col-span-2"
-                : "col-span-3")
+                ? "lg:col-span-2"
+                : "lg:col-span-3")
           }
         >
           <div class={ project.id === 3 || project.id === 4 ? "flex flex-col-reverse p-8" : "" }>
@@ -30,12 +30,12 @@ import ProjectModal from "../../ui/modal/ProjectModal.astro"
               <Image
                 src={project.image}
                 alt={project.title}
-                class={ " " +  (project.id === 3 || project.id === 4 ? "max-w-full max-h-80 mt-4 rounded" : "w-full object-cover mb-4") }
+                class={ " " +  (project.id === 3 || project.id === 4 ? "  mt-4 rounded object-contain " : "w-full object-cover mb-4") }
                 loading="lazy" 
               />
             </button>
             <div class={ "flex flex-col gap-4 " + (project.id === 3 || project.id === 4 ? "p-0" : "p-8") }>
-              <div>
+              <div class="flex flex-wrap gap-y-3">
                 {
                   project.stack.map((tech) => (
                     <span 
@@ -48,8 +48,15 @@ import ProjectModal from "../../ui/modal/ProjectModal.astro"
                 }
               </div>
               <h3 class="font-family-secondary tracking-widest text-3xl font-bold">{project.title}</h3>
-              <p class="text-custom-gray-light">{project.description}</p>
-              <a href={project.linkDeploy} class="text-custom-green-light hover:underline">Ver proyecto</a>
+              <p class="text-custom-gray-light leading-relaxed tracking-widest text-base text-left">{project.description}</p>
+              <div class=" flex gap-5">
+                <a href={project.linkRepo} class="text-custom-green-light hover:underline">Ver repositorio</a>
+                {
+                  project.linkDeploy && (
+                    <a href={project.linkDeploy} target="_blank" class="text-custom-green-light hover:underline">Ver proyecto</a>
+                  )
+                }
+              </div>
             </div>
           </div>
         </article>
